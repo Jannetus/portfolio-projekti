@@ -1,14 +1,21 @@
-/* --- Muuttujat helpottamaan muokkausta --- */
 :root {
-    --bg-color: #0f172a;       /* Tumma pääväri */
-    --bg-variant: #1e293b;     /* Hieman vaaleampi tumma */
-    --accent-color: #38bdf8;   /* Sähkönsininen tehoste */
-    --text-main: #f1f5f9;      /* Melkein valkoinen teksti */
-    --text-dim: #94a3b8;       /* Harmahtava teksti */
+    --bg-color: #0f172a;
+    --bg-variant: #1e293b;
+    --accent-color: #38bdf8;
+    --text-main: #f1f5f9;
+    --text-dim: #94a3b8;
     --nav-bg: rgba(15, 23, 42, 0.9);
 }
 
-/* --- Perusasetukset --- */
+body.light-mode {
+    --bg-color: #f8fafc;
+    --bg-variant: #ffffff;
+    --accent-color: #0284c7;
+    --text-main: #0f172a;
+    --text-dim: #475569;
+    --nav-bg: rgba(248, 250, 252, 0.9);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -23,10 +30,10 @@ body {
     padding-top: 70px;
 }
 
-/* --- Navigointi --- */
+/* --- Navigaatio & Teemanvaihto --- */
 header nav {
     background: var(--nav-bg);
-    backdrop-filter: blur(10px); /* Moderni lasiefekti */
+    backdrop-filter: blur(10px);
     padding: 1.2rem 0;
     position: fixed;
     top: 0;
@@ -58,10 +65,28 @@ nav ul li a:hover {
     color: var(--accent-color);
 }
 
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+.theme-toggle:hover { transform: scale(1.1); }
+
 /* --- Banneri --- */
 .banner-container {
     position: relative;
-    height: 300px; /* Hieman korkeampi kuin 150px, näyttää arvokkaammalta */
+    height: 300px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -94,7 +119,7 @@ nav ul li a:hover {
     letter-spacing: 4px;
 }
 
-/* --- Sisältöalueet --- */
+/* --- Yleiset alueet --- */
 .container {
     padding: 100px 20px;
     max-width: 900px;
@@ -139,7 +164,7 @@ nav ul li a:hover {
     object-fit: cover;
 }
 
-/* --- Osaamis-pillerit --- */
+/* --- Osaaminen & Animaatiot --- */
 .skills span {
     display: inline-block;
     background: rgba(56, 189, 248, 0.1);
@@ -149,16 +174,40 @@ nav ul li a:hover {
     margin: 8px;
     border-radius: 50px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
 }
+
+.skills.active span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skills.active span:nth-child(1) { transition-delay: 0.1s; }
+.skills.active span:nth-child(2) { transition-delay: 0.2s; }
+.skills.active span:nth-child(3) { transition-delay: 0.3s; }
+.skills.active span:nth-child(4) { transition-delay: 0.4s; }
+.skills.active span:nth-child(5) { transition-delay: 0.5s; }
 
 .skills span:hover {
     background: var(--accent-color);
     color: var(--bg-color);
-    transform: translateY(-3px);
+    transform: translateY(-3px) !important;
 }
 
-/* --- Projektikortit --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Projektit --- */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -181,157 +230,6 @@ nav ul li a:hover {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* --- Alatunniste --- */
-footer {
-    padding: 50px 20px;
-    background: #070b14;
-    color: var(--text-dim);
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-footer p { margin: 0; }
-
-/* --- Mobiili --- */
-@media (max-width: 600px) {
-    .banner-text h1 { font-size: 2rem; }
-    nav ul li { margin: 0 10px; }
-}
-
-/* --- Projektin arvostelutyylit --- */
-.project-rating {
-    margin: 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Keskittää tähdet kortissa */
-    gap: 10px;
-}
-
-.stars {
-    color: #ffca28; /* Kullan keltainen väri */
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(255, 202, 40, 0.4); /* Kevyt hehku tähdille */
-}
-
-.rating-text {
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-/* Jos haluat, että tähdet muuttuvat kirkkaammiksi kun kortin päälle menee */
-.project-card:hover .stars {
-    text-shadow: 0 0 15px rgba(255, 202, 40, 0.8);
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-}
-
-/* ==========================================================================
-   TONTTUPELI.HTML 
-   ========================================================================== */
-/* --- Projektikuva tonttupeli.html-sivulla --- */
-.project-hero-image {
-    width: 100%;
-    max-width: 850px;
-    margin: 30px auto;
-    border-radius: 15px;
-    overflow: hidden;
-    /* Luodaan hieno hehku kuvan ympärille */
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.project-hero-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-.project-hero-image:hover img {
-    transform: scale(1.03); /* Kevyt suurennus kun hiiri on päällä */
-}
-
-/* Päivitä section-title myös tonttupeli-sivulle */
-.code-page .section-title {
-    margin-top: 50px; /* Lisää tilaa kuvan ja otsikon väliin */
-}
-/* Koodiesittely-sivun yleisasetus */
-.code-page {
-    background-color: #070b14; /* Vielä hieman syvempi musta koodisivulle */
-}
-
-.intro-text {
-    color: var(--text-dim);
-    font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto 40px auto;
-}
-
-/* Koodinäkymän ulkoasu */
-.code-explorer {
-    text-align: left;
-    margin-top: 40px;
-}
-
-details {
-    background: var(--bg-variant);
-    margin-bottom: 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(56, 189, 248, 0.1);
-    transition: all 0.3s ease;
-}
-
-details[open] {
-    border-color: var(--accent-color);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
-}
-
-summary {
-    padding: 18px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-main);
-    display: flex;
-    align-items: center;
-    user-select: none;
-}
-
-summary:hover {
-    color: var(--accent-color);
-}
-
-summary::before {
-    content: '▶';
-    font-size: 0.8rem;
-    margin-right: 12px;
-    transition: transform 0.2s;
-    color: var(--accent-color);
-}
-
-details[open] summary::before {
-    transform: rotate(90deg);
-}
-
-/* Koodilohko (VS Code -tyylinen) */
-.code-block {
-    background: #020617; /* Erittäin tumma tausta koodille */
-    padding: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    overflow-x: auto;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
-
-pre code {
-    font-family: 'Fira Code', 'Courier New', monospace;
-    font-size: 0.95rem;
-    color: #cbd5e1;
-    line-height: 1.7;
-}
-
-/* Projektikortin nappi etusivulla */
 .project-link {
     display: inline-block;
     margin-top: 20px;
@@ -350,19 +248,314 @@ pre code {
     color: var(--bg-color);
     box-shadow: 0 0 15px var(--accent-color);
 }
-.copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s;
+
+.project-rating {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
-.copy-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+
+.stars {
+    color: #ffca28;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 202, 40, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .stars {
+    text-shadow: 0 0 15px rgba(255, 202, 40, 0.8);
+    transform: scale(1.1);
+}
+
+/* --- Tonttupeli & Koodisivut --- */
+.project-hero-image {
+    width: 100%;
+    max-width: 850px;
+    margin: 30px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.project-hero-image:hover img { transform: scale(1.03); }
+
+.code-page { background-color: #070b14; }
+
+.code-block {
+    background: #020617;
+    padding: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    overflow-x: auto;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+pre code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    line-height: 1.7;
+}
+
+details {
+    background: var(--bg-variant);
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    transition: all 0.3s ease;
+}
+
+summary {
+    padding: 18px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+/* --- Alatunniste --- */
+footer {
+    padding: 50px 20px;
+    background: #070b14;
+    color: var(--text-dim);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* --- Media Queries --- */
+@media (max-width: 600px) {
+    .banner-text h1 { font-size: 2rem; }
+    nav ul li { margin: 0 10px; }
+}
+
+:root {
+    --bg-color: #0f172a;
+    --bg-variant: #1e293b;
+    --accent-color: #38bdf8;
+    --text-main: #f1f5f9;
+    --text-dim: #94a3b8;
+    --nav-bg: rgba(15, 23, 42, 0.9);
+}
+
+body.light-mode {
+    --bg-color: #f8fafc;
+    --bg-variant: #ffffff;
+    --accent-color: #0284c7;
+    --text-main: #0f172a;
+    --text-dim: #475569;
+    --nav-bg: rgba(248, 250, 252, 0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    scroll-behavior: smooth;
+    padding-top: 70px;
+}
+
+/* --- Navigaatio & Teemanvaihto --- */
+header nav {
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem 0;
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul { display: flex; justify-content: center; list-style: none; margin: 0; }
+nav ul li { margin: 0 20px; }
+nav ul li a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+nav ul li a:hover { color: var(--accent-color); }
+
+.theme-toggle {
+    position: fixed; bottom: 20px; right: 20px;
+    z-index: 1001; background: var(--accent-color);
+    color: var(--bg-color); border: none;
+    padding: 12px; border-radius: 50%;
+    cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-size: 1.2rem; transition: transform 0.3s;
+}
+.theme-toggle:hover { transform: scale(1.1); }
+
+/* --- Koodiblokit (Prism korjaukset) --- */
+.code-block {
+    text-align: left !important;
+    position: relative;
+    background: #1e1e1e !important;
+    border-radius: 12px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+pre[class*="language-"] {
+    margin: 0 !important;
+    padding: 1.5rem !important;
+    background: transparent !important;
+}
+
+code[class*="language-"] {
+    font-family: 'Fira Code', monospace !important;
+    text-shadow: none !important;
+    font-size: 0.9rem !important;
+}
+
+.copy-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white; border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 5px 10px; font-size: 0.7rem;
+    border-radius: 4px; cursor: pointer; z-index: 10;
+}
+
+/* --- Yleiset ja Animaatiot --- */
+.container { padding: 80px 20px; max-width: 900px; margin: auto; text-align: center; }
+.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+.skills.reveal span { opacity: 0; transform: translateY(20px); transition: 0.5s ease-out; }
+.skills.active span { opacity: 1; transform: translateY(0); }
+.skills.active span:nth-child(1) { transition-delay: 0.1s; }
+.skills.active span:nth-child(2) { transition-delay: 0.2s; }
+.skills.active span:nth-child(3) { transition-delay: 0.3s; }
+.skills.active span:nth-child(4) { transition-delay: 0.4s; }
+.skills.active span:nth-child(5) { transition-delay: 0.5s; }
+
+/* --- Tonttupeli-sivun erityistyylit (Eloisuutta ja modernia otetta) --- */
+
+/* 1. Glassmorphism-efekti koodilaatikoille */
+.code-page details {
+    background: rgba(30, 41, 59, 0.7) !important; /* Läpinäkyvämpi tausta */
+    backdrop-filter: blur(8px); /* Lasin tuntu */
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. Hero-kuvan "Glow"-efekti */
+.project-hero-image {
+    position: relative;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.15); /* Pehmeä sininen hehku */
+    transition: all 0.5s ease;
+}
+
+.project-hero-image::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Reuna varjostus kuvan sisälle */
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 3. Summary-palkkien animointi */
+.code-page summary {
+    padding: 20px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.05));
+    transition: all 0.3s ease;
+    border-radius: 12px;
+}
+
+.code-page summary:hover {
+    background: rgba(56, 189, 248, 0.1);
+    padding-left: 30px; /* Pieni liike vasemmalta */
+}
+
+/* 4. Otsikon hieno alaviiva-animaatio */
+.code-page .section-title::after {
+    width: 0;
+    transition: width 1s ease-in-out;
+}
+
+.code-page .reveal.active .section-title::after {
+    width: 80px;
+}
+
+/* 5. Koodiblokkien "Neon"-reuna */
+.code-block {
+    border-left: 3px solid var(--accent-color);
+    box-shadow: -10px 0 20px rgba(56, 189, 248, 0.05);
+}
+
+/* 6. Takaisin-napin tyyli navigaatiossa */
+nav ul li a[href="index.html"] {
+    background: rgba(56, 189, 248, 0.1);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+nav ul li a[href="index.html"]:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+/* 7. Lumihiutaleiden hienosäätö (tehdään niistä pehmeämpiä) */
+.snowflake {
+    filter: blur(1px);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Tausta-animaatio tonttupeli-sivulle */
+.code-page {
+    /* Määritellään useampi väri gradienttiin */
+    background: linear-gradient(-45deg, #070b14, #0f172a, #1e1b4b, #070b14);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Lisätään vielä hienovarainen syvyysefekti koko sivulle */
+.code-page::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Nostetaan sisältö animaation yläpuolelle */
+.code-page main, .code-page nav, .code-page footer {
+    position: relative;
+    z-index: 2;
 }

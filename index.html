@@ -9,85 +9,85 @@
 </head>
 <body>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="#esittely">Esittely</a></li>
-            <li><a href="#osaaminen">Osaaminen</a></li>
-            <li><a href="#projektit">Projektit</a></li>
-            <li><a href="#yhteystiedot">Yhteystiedot</a></li>
-        </ul>
-    </nav>
-    <div class="banner-container">
-        <img src="img/banneri.jpg" alt="Portfolio Banneri" class="banner-img">
-        <div class="banner-overlay"></div>
-        <div class="banner-text">
-            <h1>Janne Karhunen</h1>
-            <p>Opiskelijana POKEN Ammattikoulussa.</p>
-        </div>
-    </div>
-</header>
+    <button class="theme-toggle" id="themeBtn" aria-label="Vaihda tumma/vaalea teema">🌓</button>
 
-<main>
-    <section id="esittely" class="container">
-        <div class="profile-wrapper">
-            <img src="img/profiilikuva.jpg" alt="Janne Karhunen" class="profile-img">
-        </div>
-        <h2 class="section-title">Tervehdys!</h2>
-        <p class="intro-text">Olen 32-vuotias mies suoraan Saarijärveltä. Tervetuloa tutustumaan minuun ja osaamiseeni.</p>
-    </section>
-
-    <section id="osaaminen" class="container bg-dark-variant">
-        <h2 class="section-title">Osaaminen</h2>
-        <div class="skills">
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>JavaScript</span>
-            <span>Git</span>
-            <span>GitHub</span>
-        </div>
-    </section>
-
-    <section id="projektit" class="container">
-        <h2 class="section-title">Projektit</h2>
-        <div class="project-grid">
-            <div class="project-card">
-    <div class="card-content">
-        <h3>Portfolio-sivusto</h3>
-        <p>Tämä Portfolio-sivusto on ensimmäinen projektini, joka on rakennettu modernilla otteella.</p>
-        
-        <div class="project-rating">
-            <span class="stars">★★★★★</span>
-            <span class="rating-text">(5/5 suositus)</span>
-        </div>
-
-        <a href="#" class="project-link">Lue lisää</a>
-    </div>
-</div>
-            <div class="project-card">
-    <div class="card-content">
-        <h3>Tonttupeli</h3>
-        <p>Peliprojekti, jossa hyödynnetään logiikkaa ja luovaa suunnittelua. Rakennettu Three.js-kirjastolla.</p>
-        
-        <a href="tonttupeli.html" class="project-link">Katso koodit &rarr;</a>
-    </div>
-</div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#esittely">Esittely</a></li>
+                <li><a href="#osaaminen">Osaaminen</a></li>
+                <li><a href="#projektit">Projektit</a></li>
+                <li><a href="#yhteystiedot">Yhteystiedot</a></li>
+            </ul>
+        </nav>
+        <div class="banner-container">
+            <img src="img/banneri.jpg" alt="Portfolio Banneri" class="banner-img">
+            <div class="banner-overlay"></div>
+            <div class="banner-text">
+                <h1>Janne Karhunen</h1>
+                <p>Opiskelijana POKEN Ammattikoulussa.</p>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="yhteystiedot" class="container bg-dark-variant">
-        <h2 class="section-title">Ota yhteyttä</h2>
-        <div class="contact-info">
-            <p>📧 <strong>Sähköposti:</strong> janne@sähköposti.fi</p>
-            <p>🔗 <strong>LinkedIn:</strong> <a href="#">linkedin.com/jannekarhunen</a></p>
-        </div>
-    </section>
-</main>
+    <main>
+        <section id="esittely" class="container reveal">
+            <div class="profile-wrapper">
+                <img src="img/profiilikuva.jpg" alt="Janne Karhunen" class="profile-img">
+            </div>
+            <h2 class="section-title">Tervehdys!</h2>
+            <p class="intro-text">Olen 32-vuotias mies suoraan Saarijärveltä. Tervetuloa tutustumaan minuun ja osaamiseeni.</p>
+        </section>
 
-<footer>
-    <p>&copy; Janne Karhunen | 2026</p>
-</footer>
+        <section id="osaaminen" class="container bg-dark-variant">
+            <h2 class="section-title">Osaaminen</h2>
+            <div class="skills reveal">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>Git</span>
+                <span>GitHub</span>
+            </div>
+        </section>
 
+        <section id="projektit" class="container reveal">
+            <h2 class="section-title">Projektit</h2>
+            <div class="project-grid">
+                <article class="project-card">
+                    <div class="card-content">
+                        <h3>Portfolio-sivusto</h3>
+                        <p>Tämä Portfolio-sivusto on ensimmäinen projektini, joka on rakennettu modernilla otteella.</p>
+                        <div class="project-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">(5/5 suositus)</span>
+                        </div>
+                        <a href="#" class="project-link">Lue lisää</a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-content">
+                        <h3>Tonttupeli</h3>
+                        <p>Peliprojekti, jossa hyödynnetään logiikkaa ja luovaa suunnittelua. Rakennettu Three.js-kirjastolla.</p>
+                        <a href="tonttupeli.html" class="project-link">Katso koodit &rarr;</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="yhteystiedot" class="container bg-dark-variant reveal">
+            <h2 class="section-title">Ota yhteyttä</h2>
+            <div class="contact-info">
+                <p>📧 <strong>Sähköposti:</strong> janne@sähköposti.fi</p>
+                <p>🔗 <strong>LinkedIn:</strong> <a href="#" target="_blank">linkedin.com/jannekarhunen</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Janne Karhunen | 2026</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
